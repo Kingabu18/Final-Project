@@ -3,7 +3,7 @@ const router = express.Router()
 const Author = require('../models/author')
 const Book = require('../models/book')
 
-// All Authors Route
+// All Member Route
 router.get('/', async (req, res) => {
   let searchOptions = {}
   if (req.query.name != null && req.query.name !== '') {
@@ -20,12 +20,12 @@ router.get('/', async (req, res) => {
   }
 })
 
-// New Author Route
+// New Member Route
 router.get('/new', (req, res) => {
   res.render('authors/new', { author: new Author() })
 })
 
-// Create Author Route
+// Create Member Route
 router.post('/', async (req, res) => {
   const author = new Author({
     name: req.body.name
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
   } catch {
     res.render('authors/new', {
       author: author,
-      errorMessage: 'Error creating Author'
+      errorMessage: 'Error creating Member'
     })
   }
 })
@@ -76,7 +76,7 @@ router.put('/:id', async (req, res) => {
     } else {
       res.render('authors/edit', {
         author: author,
-        errorMessage: 'Error updating Author'
+        errorMessage: 'Error updating Member'
       })
     }
   }
